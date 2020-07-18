@@ -8,6 +8,10 @@ Example:
 Sample Input:
 2
 1004
+121*
+
+Sample Output:
+1554
 121*/
 
 #include<bits/stdc++.h>
