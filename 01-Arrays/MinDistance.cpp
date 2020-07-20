@@ -23,24 +23,33 @@ Sample Output:
 
 #include<bits/stdc++.h>
 using namespace std;
-void minDist(int a[], int n, int x, int y){
-	auto ix= lower_bound(a,a+n,x);
-
-
-}
+int minDist(int arr[], int n, int x, int y){
+	 int minD= INT_MAX;
+	 int X,Y;
+	 int i;
+	 for(int i=0;i<n;i++){
+	 	if(arr[i]^x==0 or arr[i]^y==0){
+           X=i;
+           Y=i;
+           minD= abs(X-Y);
+           break;
+	 	}
+	 }
+    return minD;
+	}
 int main()
 {
 	int t;
 	cin>>t;
 	int n,x,y;
-	int *arr= new int[n];
 	while(t--){
 		cin>>n;
+		int *arr= new int[n];
      for(int i=0;i<n;i++){
      	cin>>arr[i];
      }
      cin>>x>>y;
-     cout<<minDist(a,n,x,y)<<endl;
+     cout<<minDist(arr,n,x,y)<<endl;
 	}
 	return 0;
 }
