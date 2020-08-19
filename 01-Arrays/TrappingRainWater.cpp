@@ -1,24 +1,41 @@
-#include<iostream>
+#include<bits/stdc++.h>
 using namespace std;
-int main(){
-  int n;
-  cin>>n;
+int trappingRainWater(int *arr, int n){
+  int i=0;
+  int j= n-1;
   int res=0;
-  int leftmax=0,rightmax=0;
-  int *arr= new int[n];
-  for(int i=0;i<n;i++){
-    cin>>arr[i];
-  }
-  for(int i=1;i<n;i++){
-    leftmax= arr[i];
-    for(int j=0;j<i;j++){
-      leftmax= max(leftmax,arr[j]);
+  int maxleft=0;
+  int maxright=0;
+  while(i<j){
+    if(arr[i]<=arr[j]){
+      if(arr[i]>=maxleft){
+        maxleft= arr[i];
+      }
+      else{
+        res+= maxleft- arr[i];
+        i++;
+      }
     }
-    rightmax= arr[i];
-    for(int j=i+1;j<n;j++){
-      rightmax= max(rightmax,arr[j]);
+      else
+      {
+        if(arr[j]>= maxright) maxright= arr[j];
+        else res+= maxright- arr[j];
+        j--;
+      }
     }
-  res= res+(min(leftmax,rightmax)-arr[i]);
+  return res;
 }
-cout<<res<<endl;
+int main(){
+  int t;
+  cin>>t;
+  while(t--){
+    int n;
+    cin>>n;
+    int a[n];
+    for(int i=0;i<n;i++){
+      cin>>a[i];
+    }
+    cout<<trappingRainWater(a,n)<<endl;
+  }
+  return 0;
 }
